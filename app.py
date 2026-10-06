@@ -4,37 +4,84 @@ import matplotlib.pyplot as plt
 
 from recommendations import *
 
+# ---------------------------
+# PAGE CONFIG
+# ---------------------------
+
 st.set_page_config(
     page_title="Healthcare Service Discovery",
     page_icon="🏥",
     layout="wide"
 )
 
+# ---------------------------
+# CUSTOM CSS
+# ---------------------------
+
+st.markdown("""
+<style>
+
+.main-title {
+    text-align: center;
+    padding: 20px;
+}
+
+.metric-container {
+    text-align: center;
+}
+
+.result-card {
+    padding: 15px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------
+# LOAD DATA
+# ---------------------------
+
 df = pd.read_csv("facilities.csv")
+
+# ---------------------------
+# SIDEBAR
+# ---------------------------
 
 st.sidebar.title("🏥 Healthcare Menu")
 
 page = st.sidebar.selectbox(
     "Navigation",
-    ["Home", "Search Service", "Analytics Dashboard"]
+    [
+        "Home",
+        "Search Service",
+        "Analytics Dashboard"
+    ]
 )
+
+# ===================================================
+# HOME PAGE
+# ===================================================
 
 if page == "Home":
 
-    st.title("🏥 Healthcare Service Discovery Platform")
+    st.markdown("""
+    <div class="main-title">
+        <h1>🏥 Healthcare Service Discovery Platform</h1>
+        <h4>Bengaluru Healthcare Resource Navigator</h4>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
+    st.info(
         """
-        ### Bengaluru Healthcare Recommendation System
+        This platform helps users discover healthcare facilities
+        based on required healthcare services such as:
 
-        Find:
-
-        - Blood Test
-        - MRI
-        - CT Scan
-        - Blood Bank
-        - Dialysis
-        - Physiotherapy
+        • Blood Tests 
+        • MRI Scans 
+        • CT Scans 
+        • Blood Banks 
+        • Dialysis Services 
+        • Physiotherapy Services 
         """
     )
 
@@ -42,52 +89,50 @@ if page == "Home":
 
     with col1:
         st.metric(
-            "Total Facilities",
+            "🏥 Total Facilities",
             len(df)
         )
 
     with col2:
         st.metric(
-            "Areas Covered",
+            "📍 Areas Covered",
             df["area"].nunique()
         )
 
     with col3:
         st.metric(
-            "Facility Types",
+            "🔬 Facility Types",
             df["facility_type"].nunique()
         )
 
-    st.subheader("Available Services")
+    st.divider()
 
-    col1, col2, col3 = st.columns(3)
+    st.subheader("Available Healthcare Services")
 
-    with col1:
-        st.success("Blood Test")
+    c1, c2, c3 = st.columns(3)
 
-    with col2:
-        st.success("MRI")
+    with c1:
+        st.success("🩸 Blood Test")
+        st.success("🔍 MRI")
 
-    with col3:
-        st.success("CT Scan")
+    with c2:
+        st.success("🖥️ CT Scan")
+        st.success("💉 Dialysis")
 
-    col4, col5, col6 = st.columns(3)
+    with c3:
+        st.success("🏃 Physiotherapy")
+        st.success("🩸 Blood Bank")
 
-    with col4:
-        st.success("Blood Bank")
-
-    with col5:
-        st.success("Dialysis")
-
-    with col6:
-        st.success("Physiotherapy")
+# ===================================================
+# SEARCH PAGE
+# ===================================================
 
 elif page == "Search Service":
 
-    st.title("Search Healthcare Facilities")
+    st.title("🔍 Search Healthcare Facilities")
 
     service = st.selectbox(
-        "Select Service",
+        "Select Required Service",
         get_available_services()
     )
 
@@ -96,7 +141,7 @@ elif page == "Search Service":
         get_available_areas()
     )
 
-    if st.button("Search"):
+    if st.button("Search Facilities"):
 
         results = recommend_by_area(
             service,
@@ -104,59 +149,185 @@ elif page == "Search Service":
         )
 
         if results.empty:
-            st.error("No facilities found")
+
+            st.error(
+                f"No facilities found for {service} in {area}."
+            )
 
         else:
 
             st.success(
-                f"{len(results)} facilities found"
+                f"✅ Found {len(results)} facilities offering {service} in {area}"
             )
+
+            st.divider()
+
+            facility_icons = {
+                "Hospital": "🏥",
+                "Blood Bank": "🩸",
+                "Diagnostic Lab": "🔬",
+                "Dialysis Centre": "💉",
+                "Physiotherapy Centre": "🏃",
+                "Clinic": "🩺"
+            }
 
             for _, row in results.iterrows():
 
-                st.subheader(
-                    row["facility_name"]
+                icon = facility_icons.get(
+                    row["facility_type"],
+                    "📍"
                 )
 
-                st.write(
-                    f"Type: {row['facility_type']}"
-                )
+                with st.container(border=True):
 
-                st.write(
-                    f"Area: {row['area']}"
-                )
+                    st.subheader(
+                        f"{icon} {row['facility_name']}"
+                    )
 
-                st.write(
-                    f"Phone: {row['phone']}"
-                )
+                    col1, col2 = st.columns(2)
 
-                st.write(
-                    f"Address: {row['address']}"
-                )
+                    with col1:
+                        st.write(
+                            f"**Facility Type:** {row['facility_type']}"
+                        )
 
-                st.write(
-                    f"Services: {row['services']}"
-                )
+                        st.write(
+                            f"**Area:** {row['area']}"
+                        )
 
-                st.divider()
+                    with col2:
+                        st.write(
+                            f"**Phone:** {row['phone']}"
+                        )
+
+                    st.write(
+                        f"**Address:** {row['address']}"
+                    )
+
+                    st.write("**Services Offered:**")
+
+                    services = str(
+                        row["services"]
+                    ).split(",")
+
+                    badge_cols = st.columns(
+                        min(4, len(services))
+                    )
+
+                    for i, service_name in enumerate(services):
+
+                        badge_cols[
+                            i % len(badge_cols)
+                        ].success(
+                            service_name.strip()
+                        )
+
+                    maps_link = (
+                        "https://www.google.com/maps/search/?api=1&query="
+                        + str(row["address"])
+                    )
+
+                    st.link_button(
+                        "📍 View on Google Maps",
+                        maps_link
+                    )
+
+# ===================================================
+# ANALYTICS PAGE
+# ===================================================
 
 elif page == "Analytics Dashboard":
 
-    st.title("Analytics Dashboard")
+    st.title("📊 Analytics Dashboard")
 
     facility_count = (
         df["facility_type"]
         .value_counts()
     )
 
-    fig, ax = plt.subplots()
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric(
+            "Most Common Facility Type",
+            facility_count.idxmax()
+        )
+
+    with col2:
+        st.metric(
+            "Total Categories",
+            len(facility_count)
+        )
+
+    st.divider()
+
+    fig, ax = plt.subplots(
+        figsize=(8, 5)
+    )
 
     facility_count.plot(
         kind="bar",
+        color="teal",
         ax=ax
     )
 
+    ax.set_title(
+        "Healthcare Facilities by Type"
+    )
+
+    ax.set_xlabel(
+        "Facility Type"
+    )
+
+    ax.set_ylabel(
+        "Count"
+    )
+
+    plt.xticks(rotation=30)
+
     st.pyplot(fig)
+
+    st.divider()
+
+    area_count = (
+        df["area"]
+        .value_counts()
+        .head(10)
+    )
+
+    st.subheader(
+        "Top Areas by Facility Availability"
+    )
+
+    fig2, ax2 = plt.subplots(
+        figsize=(8, 5)
+    )
+
+    area_count.plot(
+        kind="bar",
+        color="orange",
+        ax=ax2
+    )
+
+    ax2.set_title(
+        "Healthcare Facilities By Area"
+    )
+
+    ax2.set_xlabel(
+        "Area"
+    )
+
+    ax2.set_ylabel(
+        "Facility Count"
+    )
+
+    plt.xticks(rotation=45)
+
+    st.pyplot(fig2)
+
+# ===================================================
+# FOOTER
+# ===================================================
 
 st.divider()
 
