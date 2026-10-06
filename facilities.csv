@@ -1,0 +1,94 @@
+id,facility_id,facility_name,facility_type,area,address,phone,services
+FAC001,1,Thyrocare Technologies,Diagnostic Laboratory,Jayanagar,"2005,S End E Cross Rd,Jayanagar 9th block,J.P.Nagar Bengaluru-560069",9844211811,blood test
+FAC002,2,Dr. Lal PathLabs,Diagnostic Laboratory,Indiranagar,"Ground Floor, No 197/a, Link Rd 4, Stage 2, Hoysala Nagar, Indiranagar, Bengaluru, Karnataka 560038",011-49885050,blood test
+FAC003,3,Metropolis Healthcare,Diagnostic Laboratory,Koramangala,"8, 1st Main Rd, Jakkasandra, 1st Block Koramangala, Koramangala, Bengaluru, Karnataka 560034",8037071479,blood test
+FAC004,4,Aster Labs,Diagnostic Laboratory,JP Nagar,"24th Main Rd, near Aster RV Hospital, ITI Layout, 1st Phase, J. P. Nagar, Bengaluru, Karnataka 560078",080-45674567,blood test
+FAC005,5,Neuberg Diagnostics,Diagnostic Laboratory,Rajajinagar,"302/13, 66th Cross Rd, 5th Block, Rajajinagar, Bengaluru, Karnataka 560010",080-67252000,"blood test, ct scan, mri"
+FAC006,6,Apollo Diagnostics,Diagnostic Laboratory,HSR Layout,"24th Main Rd, Sector 2, HSR Layout, Bengaluru, Karnataka 560102",1860-500-7788,blood test
+FAC007,7,SRL Diagnostics,Diagnostic Laboratory,Whitefield,"Thirumala, Raya Swamy, 122,C/O. Nagaraj Reddy , Ukn Appartment, Road, Sai Baba Temple Rd, Thubarahalli, Whitefield, Bengaluru, Karnataka 560066",080-49353333,blood test
+FAC008,8,Manipal TRUtest,Diagnostic Laboratory,Old Airport Road,"98, HAL Old Airport Rd, Kodihalli, Bengaluru, Karnataka 560017",1800-102-4647,blood test
+FAC009,9,Metropolis Labs,Diagnostic Laboratory,Malleshwaram,"10th Cross Rd, Yalappa Garden, Malleshwaram, Bengaluru, Karnataka 560003",8037071472,"blood test, ct scan, mri"
+FAC010,10,Medall Diagnostics,Diagnostic Laboratory,Banashankari,"18, Uttarahalli Main Rd, opp. Bus Stop, RK Layout 2nd Stage, Banashankari 2nd Stage, Padmanabhanagar, Bengaluru, Karnataka 560070",7550177777,"blood test, ct scan, mri"
+FAC011,11,PathCare Labs,Diagnostic Laboratory,Marathahalli,"1210, 19th Main Rd, opp. to UCO Bank, next to Domino's pizza, 8th cross, Narayan Gowda Layout, 1st Stage, BTM 1st Stage, Bengaluru, Karnataka 560029",8088678924,blood test
+FAC012,12,Vijaya Diagnostic Centre,Diagnostic Laboratory,HSR Layout,"1511, 19th Main Rd, Vanganahalli, Sector 4, HSR Layout, Bengaluru, Karnataka 560102",9059700315,"blood test, ct scan, mri"
+FAC013,13,LAYA Diagnostics,Diagnostic Laboratory,Indiranagar,"Opp:Ayaansh Hospital, 501, Chinmaya Mission Hospital Rd, Indira Nagar 1st Stage, Stage 1, Indiranagar, Bengaluru, Karnataka 560038",9009009575,"blood test, ct scan, mri"
+FAC014,14,Manipal Hospital,Hospital Imaging Center,Old Airport Road,"98, HAL Airport Road, Bengaluru 560017",080-25268901,mri
+FAC015,15,Fortis Hospital Imaging Centre,Hospital Imaging Center,Bannerghatta Road,"154/9, Bannerghatta Road, Bengaluru 560076",080-66214444,"ct scan, mri"
+FAC016,16,Narayana Health Imaging Centre,Hospital Imaging Center,Bommasandra,"258/A, Hosur Road, Bommasandra, Bengaluru 560099",080-71222222,"ct scan, mri, dialysis"
+FAC017,17,Sakra World Hospital Imaging Center,Hospital Imaging Center,Marathahalli,"Devarabeesanahalli, Marathahalli, Bengaluru 560103",080-49694969,"ct scan, mri"
+FAC018,18,Aster CMI Imaging Centre,Hospital Imaging Center,Hebbal,"43/2, New Airport Road, Sahakara Nagar, Hebbal, Bengaluru 560092",080-43420100,"ct scan, mri"
+FAC019,19,MS Ramaiah Diagnostic Imaging,Hospital Imaging Center,Mathikere,"MS Ramaiah Campus, MSR Nagar, Bengaluru 560054",080-22183238,"ct scan, mri, dialysis"
+FAC020,20,Vijaya Diagnostic Centre,Diagnostic Imaging Center,Indiranagar,"CMH Road, Indiranagar, Bengaluru",040-21000000,"ct scan, mri"
+FAC021,21,Anand Diagnostic Laboratory,Diagnostic Imaging Center,Shivajinagar,"Anand Tower, 54, Bowring Hospital Rd, Tasker Town, Shivaji Nagar, Bengaluru, Karnataka 560001",080-22080000,"ct scan, mri"
+FAC022,22,Neuberg Diagnostics,Diagnostic Imaging Center,Rajajinagar,"New No. 46/10, Srinidhi SLLR Orcade, Old No. 20, 12th Main Rd, 1st Block, 2nd Stage, Rajajinagar, Bengaluru, Karnataka 560010",080-67252000,"ct scan, mri"
+FAC023,23,Kauvery Hospital Imaging Centre,Hospital Imaging Center,Marathahalli,"ITPL Main Road, Marathahalli, Bengaluru 560037",080-41841818,mri
+FAC024,24,Columbia Asia Hospital Imaging Centre,Hospital Imaging Center,Hebbal,"Kirloskar Business Park, Bellary Road, Hebbal, Bengaluru",080-61656666,mri
+FAC025,25,St. John's Medical College Hospital Imaging Centre,Hospital Imaging Center,Koramangala,"193 1, Hosur Road, Sarjapur - Marathahalli Rd, Santhosapuram, Koramangala Industrial Layout, Koramangala, Bengaluru, Karnataka 560034",080-22065000,"ct scan, mri"
+FAC026,26,Anand Diagnostic Laboratory,Diagnostic Imaging Center,Shivajinagar,"Anand Tower, 54, Bowring Hospital Rd, Tasker Town, Shivaji Nagar, Bengaluru, Karnataka 560001",080-22080000,"ct scan, mri"
+FAC027,27,Vijaya Diagnostic Centre,Diagnostic Imaging Center,JP Nagar,"Ground and First Floor, Srinidhi Towers, Bannerghatta Rd, Sarakki Industrial Layout, 3rd Phase, J. P. Nagar, Bengaluru, Karnataka 560078",9247585220,"ct scan, mri"
+FAC028,28,Medall Diagnostics,Multispecialty Diagnostic Center,Banashankari,"350, 7th Main Rd, Kathriguppe IV Phase, Gururaja Layout, Banashankari, Bengaluru, Karnataka 560070",080-61204444,"ct scan, mri"
+FAC029,29,Apollo Diagnostics,Diagnostic Imaging Center,HSR Layout,"99, Birla Junction, 4, Haralur Main Rd, next to Reliance Digital, Reliable Tranquil Layout, HSR Layout, Bengaluru, Karnataka 560102",1860-500-7788,ct scan
+FAC030,30,Manipal TRUtest Diagnostic Centre,Diagnostic Imaging Center,Rayasandra,"Rayasandra Circle, Bengaluru-560100",9632776184,blood test
+FAC031,31,Aster Labs & Imaging,Multispecialty Diagnostic Center,JP Nagar,"Landmark: 952, 24th Main Rd, next to HDFC Bank, R.K Colony, Marenahalli, 2nd Phase, J. P. Nagar, Bengaluru, Karnataka 560041",080-45674567,"ct scan, mri"
+FAC032,32,Neuberg Diagnostics,Diagnostic Imaging Center,Rajajinagar,"New No. 46/10, Srinidhi SLLR Orcade, Old No. 20, 12th Main Rd, 1st Block, 2nd Stage, Rajajinagar, Bengaluru, Karnataka 560010",080-67252000,"ct scan, mri"
+FAC033,33,Lucid Medical Diagnostics,Diagnostic Imaging Center,Hanumanthanagar,"H No: 28, 8th Main, 50 Feet Road, Hanumanthanagar, Bengaluru, Karnataka 560050",080-41487200,"ct scan, mri"
+FAC034,34,Fortis Imaging Centre,Hospital Imaging Center,Bannerghatta Road,"154, 9, Bannerghatta Rd, opposite IIM, Sahyadri Layout, Panduranga Nagar, Bengaluru, Karnataka 560076",080-66214444,"ct scan, mri"
+FAC035,35,Narayana Health Imaging Centre,Hospital Imaging Center,Bommasandra,"258/A, Hosur Rd, Bommasandra Industrial Area, Bommasandra, Karnataka 560099",080-71222222,"ct scan, mri"
+FAC036,36,Sakra World Hospital Imaging Center,Hospital Imaging Center,Marathahalli,"SY NO 52/2 & 52/3, Devarabeesanahalli, Varthur Hobli Opp Intel, Outer Ring Rd, Marathahalli, Bengaluru, Karnataka 560103",080-49694969,"ct scan, mri"
+FAC037,37,MS Ramaiah Diagnostic Imaging,Hospital Imaging Center,Mathikere,"New BEL Rd, M S Ramaiah Nagar, MSRIT Post, Bengaluru, Karnataka 560054",080-22183238,"ct scan, mri"
+FAC038,38,Aster CMI Imaging Centre,Hospital Imaging Center,Hebbal,"43/2, NH 7, New Airport Road, Sahakar Nagar, Sanjeevini Nagar, Bengaluru, Karnataka 560092",080-43420100,"ct scan, mri"
+FAC039,39,Columbia Asia Imaging Centre,Hospital Imaging Center,Hebbal,"Kirloskar Business Park, Hebbal, Bengaluru",080-61656666,ct scan
+FAC040,40,Karnataka Red Cross Blood Bank,Voluntary Blood Bank,Vasanth Nagar,"KSFC Building, Thimmaiah Road, Vasanth Nagar, Bengaluru 560052",080-22268435,blood donation
+FAC041,41,Lions Blood Bank,Voluntary Blood Bank,Vasanth Nagar,"Jain Hospital, Millers Rd, Kaverappa Layout, Vasanth Nagar, Bengaluru, Karnataka 560001",080-22266807,blood donation
+FAC042,42,Rotary TTK Blood Bank,Voluntary Blood Bank,HAL 3rd Stage,"New Thippasandra Main Road, HAL III Stage, Bengaluru",080-25293486,blood donation
+FAC043,43,Naveen Blood Bank,Blood Bank,Jayanagar,"30th Cross, Jayanagar 3rd Block, Bengaluru",080-26341907,blood donation
+FAC044,44,Navarang Blood Bank,Blood Bank,Rajajinagar,"Near Navarang Circle, Rajajinagar, Bengaluru",080-23521233,blood donation
+FAC045,45,Sushrutha Voluntary Blood Bank,Voluntary Blood Bank,Rajajinagar / Malleshwaram,"Modi Hospital Road, Bengaluru 560086",080-23447666,blood donation
+FAC046,46,Jeeva Voluntary Blood Bank & Diagnostic Centre,Voluntary Blood Bank,Chamarajpet,"7, 2nd Main Road, Chamarajpet, Bengaluru 560018",080-26500736,blood donation
+FAC047,47,Dr. Shivaji Rao's Blood Bank,Blood Bank,Lalbagh Road,"No.1, KH Road, Lalbagh Road, Bengaluru 560027",080-22224044,blood donation
+FAC048,48,Grace Blood Bank,Blood Bank,Ganganagar,"1st Floor, Vasantappa Complex, CBI Road, Ganganagar, Bengaluru 560032",080-23336608,blood donation
+FAC049,49,M.S. Ramaiah Medical Hospital Blood Bank,Hospital Blood Bank,Mathikere,"New BEL Road, MSR Nagar, Bengaluru 560054",080-23606545,blood donation
+FAC050,50,Jayadeva Institute of Cardiology Blood Bank,Hospital Blood Bank,Jayanagar,"9th Block, Bannerghatta Road, Jayanagar, Bengaluru 560069",080-26534600,blood donation
+FAC051,51,Bangalore Baptist Hospital Blood Bank,Hospital Blood Bank,Hebbal,"Bellary Road, Hebbal, Bengaluru 560024",080-23330323,blood donation
+FAC052,52,Malleshwaram Voluntary Blood Bank,Voluntary Blood Bank,Malleshwaram,"44/3, 4th Cross Road, Malleshwaram, Bengaluru",080-23364411,blood donation
+FAC053,53,Sri Manyatha Voluntary Blood Center,Voluntary Blood Centre,Nagawara / North Bengaluru,"517, 4th Main Road, Bengaluru North",9980239887,blood donation
+FAC054,54,NephroPlus Dialysis Clinic,Dialysis Centre,Yeshwanthpur,"No. 4/1, Tumkur Road, Industrial Area Phase-I, Yeshwanthpur, Bengaluru",1800 120 001 001,dialysis
+FAC055,55,NephroWorld Dialysis Center,Dialysis Centre,Ramamurthy Nagar (Corporate Office),"#12, 5th Main Rd, Raghavendra Nagar, Bengaluru 560016",9075105160,dialysis
+FAC056,56,NephroWorld Dialysis Center @ Vividus Hospital,Dialysis Centre,Yeshwanthpur,"No. 33, HMT Main Road, 2nd Phase, Yeshwanthpur",8826775718,dialysis
+FAC057,57,Aster CMI Hospital Dialysis Unit,Hospital Dialysis Unit,Hebbal,"No.43/2, New Airport Road, Sahakara Nagar",080 43420100,dialysis
+FAC058,58,Aster RV Hospital Dialysis Unit,Hospital Dialysis Unit,JP Nagar,"CA 37, 24th Main, JP Nagar 1st Phase",080 66040400,dialysis
+FAC059,59,Aster Whitefield Hospital Dialysis Unit,Hospital Dialysis Unit,Whitefield,"Sadaramangala, Plot No. 3 & 4, Main Road, off Whitefield, opposite ITPL Main Road, Industrial Area, Whitefield, Bengaluru, Karnataka 560066",080 45108888,dialysis
+FAC060,60,Medstar Speciality Hospital Dialysis Centre,Hospital Dialysis Unit,Sahakara Nagar,"641/17/1/3, 641/17, Kodigehalli Main Rd, opposite Chairman's Resorts, Sahakar Nagar, Sanjeevini Nagar, Bengaluru, Karnataka 560092",9611934655,dialysis
+FAC061,61,Navachethana Hospital Dialysis Centre,Hospital Dialysis Unit,Yelahanka,"17/A2, 3rd B Cross Road, Opposite RWF Rail Wheel Factory GM Admin Office, A Sector, RWF West Colony, Yelahanka New Town, Bengaluru, Karnataka 560064",9880925495,dialysis
+FAC062,62,Cura Hospitals Dialysis Centre,Hospital Dialysis Unit,Kammanahalli,"1, Bethel St, HRBR Layout 2nd Block, Kalyan Nagar, Kammanahalli, Bengaluru, Karnataka 560043",8748030303,dialysis
+FAC063,63,Cura Hospitals Dialysis Centre,Hospital Dialysis Unit,Kanakapura Road,"18, Kanakapura Main Rd, Venkatareddy Layout, Industrial Area, Doddakallasandra, Uttarahalli Hobli, Bengaluru, Karnataka 560062",080 28432333,dialysis
+FAC064,64,Hanumanthnagar Lions Dialysis Center,NGO Dialysis Centre,Hanumanthanagar,"No. 18, 1st Floor, next to SMGB Building, Srinivasanagara, Hanumanthnagar, Banashankari 1st Stage, Hanumanthnagar, Bengaluru, Karnataka 560004",8026616863,dialysis
+FAC065,65,BMS Dialysis Center,Dialysis Centre,Basavanagudi,"Bull Temple Rd, opp. BMS College of Engineering, NR Colony, Basavanagudi, Bengaluru, Karnataka 560004",80266138888,dialysis
+FAC066,66,Renalyfe Dialysis Centre,Dialysis Centre,Basavanagudi,"2nd Floor, No.15, 1st Main Rd, Tata Silk Farm, Basavanagudi, Bengaluru, Karnataka 560004",9742222221,dialysis
+FAC067,67,Hithalaya Dialysis Center,Dialysis Centre,Gottigere,"371/A, near Jambusawari Dinne Main Road, Kothnur, Royal County, 8th Phase, Gottigere, Bengaluru, Karnataka 560083",8460415630,dialysis
+FAC068,68,Dr. Gomathi's Trust Physiotherapy Clinic,Physiotherapy Clinic,Bannerghatta Road,"1st Floor, 440, DC Halli Main Road, above Trust Medicals, Vijaya Bank Layout, Bommanahalli, Bengaluru, Karnataka 560076",8401710626,physiotherapy
+FAC069,69,Qi Spine Clinic,Physiotherapy & Spine Clinic,Indiranagar,"100 Feet Road, Indiranagar, Bengaluru",7041912604,physiotherapy
+FAC070,70,Qi Spine Clinic,Physiotherapy & Spine Clinic,Jayanagar,"46th Cross Road, Jayanagar 5th Block, Bengaluru",8401941279,physiotherapy
+FAC071,71,Qi Spine Clinic,Physiotherapy & Spine Clinic,Malleshwaram,"4th Main Road, Malleswaram West, Bengaluru",7411855218,physiotherapy
+FAC072,72,Rayarakirana Physiotherapy & Rehab Clinic,Physiotherapy Clinic,Banashankari,"23rd Main, Banashankari 2nd Stage, Bengaluru",7383619295,physiotherapy
+FAC073,73,Anand Abhigyan Health Care & Life Sciences,Physiotherapy Centre,Yelahanka,"Singanayakanahalli, Yelahanka, Bengaluru",9845446442,physiotherapy
+FAC074,74,ARCH Physiotherapy & Rehabilitation,Physiotherapy & Rehab Centre,Brookefield,"ASK Towers, BEML Layout, Brookefield, Bengaluru",6364060004,physiotherapy
+FAC075,75,Dr. Ramya's Physiotherapy Clinic,Physiotherapy Clinic,Munnekollal,"Laxminarayana Layout, Munnekollal, Bengaluru",6362977701,physiotherapy
+FAC076,76,Move Well Physiotherapy Clinic,Physiotherapy Clinic,Bagalagunte,"Hesaraghatta Main Road, Bagalagunte, Bengaluru",9341078737,physiotherapy
+FAC077,77,Gait Physio Clinic,Physiotherapy Clinic,Whitefield,"Hope farm signal, Shop No:26 2nd Floor & Shop No:06 3rd Floor, Arya Hub Mall, Prasanth Extension, Whitefield, Bengaluru, Karnataka 560066",8904456243,physiotherapy
+FAC078,78,CV Physiotherapy @ Health Care,Physiotherapy Clinic,Hulimavu,"Hulimavu Main Road, Kempamma Layout, Bengaluru",8971859329,physiotherapy
+FAC079,79,Blossom Physiotherapy Clinic,Physiotherapy Clinic,Marathahalli,"46, 2nd Cross Rd, Aswath Nagar, Marathahalli",080 47193485,physiotherapy
+FAC080,80,Zelus Physiotherapy Clinic,Physiotherapy Clinic,HSR Layout,"679, 9th Main Rd, opp. MRF, 7th Sector, HSR Layout, Bengaluru, Karnataka 560102",080 47484252,physiotherapy
+FAC081,81,CB Physiotherapy Clinic,Physiotherapy Clinic,Jayanagar,"54, 8th Main Rd, Jayanagar 1st Block",8047093099,physiotherapy
+FAC082,82,CB Physiotherapy Clinic,Physiotherapy Clinic,Whitefield,"Saranya Square, Ramagondanahalli, Whitefield",8047193484,physiotherapy
+FAC083,83,CB Physiotherapy Clinic,Physiotherapy Clinic,JP Nagar,"Cadabam's Hospital, JP Nagar 5th Phase",8047193485,physiotherapy
+FAC084,84,ReLiva Physiotherapy & Rehab,Physiotherapy Clinic,Bellandur,"Apollo Clinic, Bellandur Ring Road",9920991584,physiotherapy
+FAC085,85,ReLiva Physiotherapy & Rehab,Physiotherapy Clinic,Electronic City,"Apollo Clinic, Neeladri Road, Phase 1",9920991584,physiotherapy
+FAC086,86,Curis 360 Physiotherapy Clinic,Physiotherapy Clinic,Jayanagar 7th Block,"2303, 21st Cross, KR Road",7899844360,physiotherapy
+FAC087,87,Curis 360 Physiotherapy Clinic,Physiotherapy Clinic,Banashankari,"15, 31st Main Rd, near Deve Gowda Petrol Pump, behind D Mart, 7 Block, Banagirinagara, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085",7899844360,physiotherapy
+FAC088,88,Curis 360 Physiotherapy Clinic,Physiotherapy Clinic,Vasanthapura,"Uttarahalli Road, Vasanthapura",7899844360,physiotherapy
+FAC089,89,MOTIONEX Physiotherapy Clinic,Physiotherapy Clinic,Ramamurthy Nagar,"Raghavendra Circle, Old Santhe Road",9348362440,physiotherapy
+FAC090,90,Complete Physiotherapy Centre,Physiotherapy Clinic,Richards Town,"landmark, 45/1, Davis Rd, opp. Primecare Pharmacy on, Richards Town, Bengaluru, Karnataka 560005",9980200996,physiotherapy
+FAC091,91,Balance Plus Physiotherapy Clinic,Physiotherapy Clinic,HSR Layout,"13th Main Rd, HSR Layout",8025717000,physiotherapy
+FAC092,92,ARCH Physiotherapy & Rehabilitation,Physiotherapy Clinic,Brookefield,"2 nd floor, Shams Towers, above Empire restaurant, next to Bata showroom, Lakshminarayana Pura, BEML Layout, Brookefield, Bengaluru, Karnataka 560037",6364060004,physiotherapy
+FAC093,93,Qi Spine Clinic,Physiotherapy & Spine Clinic,Indiranagar,"1st Floor, Ajay Towers, 53, 100 Feet Rd, above Ather electric bike showroom, Defence Colony, Indiranagar, Bengaluru, Karnataka 560038",7041912604,physiotherapy
