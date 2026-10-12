@@ -1,0 +1,31 @@
+medicine_id,medicine_name,category,dosage_form,unit,price_inr,common_uses
+MED001,"Metformin / Glycomet / Glucophage / Obimet 500mg",Antidiabetic,Tablet,Strip of 10 tablets,45.0,"Diabetes Monitoring, Annual Health Checkup"
+MED002,"Glimepiride / Amaryl / Glimy / Zoryl 2mg",Antidiabetic,Tablet,Strip of 15 tablets,60.0,Diabetes Monitoring
+MED003,"Paracetamol / Dolo / Crocin / Calpol 650mg",Analgesic / Antipyretic,Tablet,Strip of 15 tablets,30.0,"General Health Screening, Fever, Pain"
+MED004,"Multivitamin / Becadexamin / Supradyn / A-Z",Supplement,Tablet,Bottle of 30 tablets,250.0,"Senior Citizen Wellness, Annual Health Checkup"
+MED005,"Methylcobalamin / Meconerv / Nurokind 1500mcg",Vitamin Supplement,Tablet,Strip of 10 tablets,135.0,"Senior Citizen Wellness, Diabetic Monitoring"
+MED006,"Ibuprofen / Brufen / Combiflam / Advil 400mg",NSAID,Tablet,Strip of 20 tablets,25.0,"Bone & Joint Injury, Arthritis Management"
+MED007,"Diclofenac / Voveran / Omnigel / Dynapar Gel 30g",Topical Analgesic,Gel,Tube of 30g,110.0,"Bone & Joint Injury, Spine & Back Pain Care"
+MED008,"Calcium + Vit D3 / Shelcal / Gemcal 500",Supplement,Tablet,Strip of 15 tablets,150.0,"Senior Citizen Wellness, Bone & Joint Injury, Arthritis Management"
+MED009,"Tramadol / Contramal / Ultracet 50mg",Analgesic (Opioid),Capsule,Strip of 10 capsules,180.0,"Spine & Back Pain Care, Post-Op Rehabilitation"
+MED010,"Amlodipine / Stamlo / Amcard 5mg",Antihypertensive,Tablet,Strip of 15 tablets,35.0,"Hypertension & Heart Check, Cardiac Risk Assessment"
+MED011,"Atorvastatin / Storvas / Lipitor / Atorva 10mg",Statin / Lipid-lowering,Tablet,Strip of 15 tablets,85.0,"Cardiac Risk Assessment, Executive Health Screening"
+MED012,"Aspirin / Disprin / Ecosprin 75mg",Antiplatelet,Tablet,Strip of 14 tablets,15.0,"Cardiac Risk Assessment, Stroke Assessment"
+MED013,"Clopidogrel / Plavix / Deplatt 75mg",Antiplatelet,Tablet,Strip of 10 tablets,115.0,"Stroke Assessment, Cardiac Risk Assessment"
+MED014,"Montelukast / Montek LC / Romilast 10mg",Antiasthmatic,Tablet,Strip of 10 tablets,120.0,"Respiratory & Asthma Screening, Chronic Cough Workup"
+MED015,"Salbutamol / Asthalin / Duolin Inhaler",Bronchodilator,Inhaler,Inhaler canister (200 metered doses),180.0,Respiratory & Asthma Screening
+MED016,"Budesonide / Foracort / Budecort Inhaler",Corticosteroid Inhaler,Inhaler,Inhaler canister (200 doses),350.0,"Respiratory & Asthma Screening, Chronic Cough Workup"
+MED017,"Pantoprazole / Pantocid / Pan-D / Pantodac 40mg",Antacid / PPI,Tablet,Strip of 15 tablets,55.0,"Liver & Gastroenterology Check, General Health Screening"
+MED018,"Omeprazole / Omez / Ocid 20mg",Antacid / PPI,Capsule,Strip of 20 capsules,40.0,Liver & Gastroenterology Check
+MED019,"Ursodeoxycholic Acid / Ursocol / Udiliv 300mg",Gallstone / Liver Agent,Tablet,Strip of 10 tablets,420.0,Liver & Gastroenterology Check
+MED020,"Sevelamer Carbonate / Renvela / Sevcar 800mg",Phosphate Binder,Tablet,Strip of 10 tablets,450.0,"Kidney Care Journey, Dialysis Routine"
+MED021,"Sodium Bicarbonate / Soda Mint / Alka-Seltzer 500mg",Alkalinizer / Renal Supp,Tablet,Strip of 10 tablets,28.0,"Kidney Care Journey, Renal Failure Screening"
+MED022,"Ferrous Sulphate / Orofer XT / Autrin",Hematinic / Supplement,Tablet,Strip of 10 tablets,40.0,"Anemia Management, Maternal & Prenatal Checkup"
+MED023,"Thyroxine Sodium / Eltroxin / Thyronorm 50mcg",Hormone Replacement,Tablet,Strip of 120 tablets,95.0,Thyroid & Metabolic Check
+MED024,"Methylprednisolone / Medrol / Solu-Medrol 4mg",Corticosteroid,Tablet,Strip of 15 tablets,75.0,Dermatology & Allergy Workup
+MED025,"Ketoconazole / Nizoral / Candid-KZ Cream 15g",Antifungal,Cream,Tube of 15g,130.0,Dermatology & Allergy Workup
+MED026,"Cetirizine / Cetzine / Okacet 10mg",Antihistamine,Tablet,Strip of 10 tablets,20.0,"Dermatology & Allergy Workup, Respiratory & Asthma Screening"
+MED027,"Hydrocortisone / Soframycin / Hydrocort 1% Cream",Topical Corticosteroid,Cream,Tube of 15g,90.0,Dermatology & Allergy Workup
+MED028,"Myo-Inositol / Ovaltheitol / Ovaflow Sachet",PCOS Supplement,Sachet / Tablet,Box of 10 sachets,320.0,"PCOS & Hormonal Care, Fertility Assessment Routine"
+MED029,"Prenatal Multivitamin / Centrum Materna / Natalcare",Prenatal Supplement,Capsule,Strip of 15 capsules,280.0,"Maternal & Prenatal Checkup, Fertility Assessment Routine"
+MED030,"Progesterone / Susten / Dubb 200mg",Hormone Support,Capsule,Strip of 10 capsules,390.0,"Maternal & Prenatal Checkup, PCOS & Hormonal Care"
