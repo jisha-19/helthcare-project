@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import quote_plus
 import streamlit as st
 import pandas as pd
 import recommendations as bk
@@ -22,36 +23,30 @@ st.markdown("""
     }
     .hero-container {
         background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-        padding: 2.5rem 2rem;
+        padding: 2.25rem 2rem;
         border-radius: 1rem;
         color: white;
-        margin-bottom: 2rem;
+        margin-bottom: 1.75rem;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.35rem;
         font-weight: 800;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
         letter-spacing: -0.025em;
     }
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         color: #cbd5e1;
         font-weight: 400;
     }
     .card-container {
         background: white;
-        padding: 1.5rem;
+        padding: 1.4rem;
         border-radius: 0.75rem;
         border: 1px solid #e2e8f0;
         margin-bottom: 1rem;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-container:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        border-color: #cbd5e1;
     }
     .badge-type {
         background-color: #eff6ff;
@@ -90,13 +85,53 @@ st.markdown("""
         border-radius: 0.375rem;
         font-weight: 700;
         font-size: 0.95rem;
+        display: inline-block;
+    }
+    .price-sub {
+        display: block;
+        color: #78350f;
+        font-size: 0.72rem;
+        margin-top: 0.25rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
+FACILITY_ICONS = {
+    "Hospital": "🏥",
+    "Multispeciality Hospital": "🏥",
+    "Multispecialty Hospital": "🏥",
+    "Teaching Hospital": "🏥",
+    "Government Hospital": "🏥",
+    "Women's Hospital": "🏥",
+    "Women's & Children's Hospital": "🏥",
+    "Children's Hospital": "🏥",
+    "Speciality Hospital": "🏥",
+    "Orthopaedic Hospital": "🦴",
+    "Cardiac Hospital": "❤️",
+    "Blood Bank": "🩸",
+    "Voluntary Blood Bank": "🩸",
+    "Voluntary Blood Centre": "🩸",
+    "Hospital Blood Bank": "🩸",
+    "Diagnostic Lab": "🔬",
+    "Diagnostic Laboratory": "🔬",
+    "Diagnostic Imaging Center": "🔬",
+    "Hospital Imaging Center": "🔬",
+    "Multispecialty Diagnostic Center": "🔬",
+    "Hospital Diagnostic Centre": "🔬",
+    "Speciality Diagnostic Centre": "🔬",
+    "Dialysis Centre": "💉",
+    "Dialysis Center": "💉",
+    "Hospital Dialysis Unit": "💉",
+    "NGO Dialysis Centre": "💉",
+    "Physiotherapy Centre": "🏃",
+    "Physiotherapy Clinic": "🏃",
+    "Physiotherapy & Spine Clinic": "🏃",
+    "Clinic": "🩺",
+}
+
 
 # ============================================================
-# SAFE DATA & BACKEND HELPERS
+# SAFE DATA, MAPS & BACKEND HELPERS
 # ============================================================
 def _load_csv_if_exists(attr_name, filename):
     if hasattr(bk, attr_name) and isinstance(getattr(bk, attr_name), pd.DataFrame):
@@ -126,13 +161,127 @@ def safe_call(func_name, *args, default=None, **kwargs):
     return default
 
 
+def get_gmaps_url(row):
+    parts = [
+        str(row.get("facility_name", "")).strip(),
+        str(row.get("address", "")).strip(),
+        str(row.get("area", "")).strip(),
+        "Bengaluru",
+    ]
+    query = ", ".join([p for p in parts if p and p.lower() != "nan"])
+    return f"https://www.google.com/maps/search/?api=1&query={quote_plus(query)}"
+
+
+def get_facility_icon(facility_type):
+    f_type = str(facility_type or "").strip()
+    if f_type in FACILITY_ICONS:
+        return FACILITY_ICONS[f_type]
+    low = f_type.lower()
+    if "blood" in low:
+        return "🩸"
+    if "dialysis" in low:
+        return "💉"
+    if "physio" in low:
+        return "🏃"
+    if "diag" in low or "imag" in low or "lab" in low:
+        return "🔬"
+    if "hospital" in low:
+        return "🏥"
+    if "clinic" in low:
+        return "🩺"
+    return "📍"
+
+
+def render_classic_facility_card(row):
+    icon = get_facility_icon(row.get("facility_type"))
+    with st.container(border=True):
+        st.subheader(f"{icon} {row['facility_name']}")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(f"**Facility Type:** {row['facility_type']}")
+            st.write(f"**Area:** {row['area']}")
+        with col2:
+            st.write(f"**Phone:** {row['phone']}")
+
+        st.write(f"**Address:** {row['address']}")
+        st.write("**Services Offered:**")
+
+        services = [s.strip() for s in str(row.get("services", "")).split(",") if s.strip()]
+        if services:
+            badge_cols = st.columns(min(4, len(services)))
+            for i, service_name in enumerate(services):
+                badge_cols[i % len(badge_cols)].success(service_name)
+
+        st.link_button("📍 View on Google Maps", get_gmaps_url(row))
+
+
+def render_styled_facility_card(row, compact=False):
+    services_list = [s.strip() for s in str(row.get("services", "")).split(",") if s.strip()]
+    services_pills = "".join([f"<span class='service-pill'>{s}</span>" for s in services_list])
+    maps_url = get_gmaps_url(row)
+
+    heading_tag = "h4" if compact else "h3"
+    heading_style = "margin: 0.5rem 0; color: #1e293b;" if compact else "margin: 0.5rem 0; color: #1e293b; font-size: 1.25rem;"
+    contact_line = (
+        f"<p style='color: #64748b; font-size: 0.85rem; margin-bottom: 0.5rem;'>🏠 {row['address']} | 📞 {row['phone']}</p>"
+        if compact
+        else f"<p style='color: #64748b; margin-bottom: 0.5rem; font-size: 0.9rem;'>🏠 {row['address']}</p><p style='color: #0f172a; margin-bottom: 0.75rem; font-weight: 600;'>📞 Phone: {row['phone']}</p>"
+    )
+    services_block = services_pills if compact else f"<strong>Offered Services:</strong><br>{services_pills}"
+
+    st.markdown(f"""
+    <div class="card-container">
+        <span class="badge-type">{row['facility_type']}</span>
+        <span class="badge-area">📍 {row['area']}</span>
+        <{heading_tag} style="{heading_style}">{row['facility_name']}</{heading_tag}>
+        {contact_line}
+        <div style="margin-top: 0.5rem;">
+            {services_block}
+        </div>
+        <div style="margin-top: 0.75rem;">
+            <a href="{maps_url}" target="_blank" rel="noopener noreferrer"
+               style="display: inline-block; background-color: #1d4ed8; color: white; padding: 0.35rem 0.75rem; border-radius: 0.375rem; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+                📍 View on Google Maps
+            </a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+def render_medicine_card(med, compact=False):
+    heading_tag = "h4" if compact else "h3"
+    heading_style = "margin: 0.25rem 0; color: #1e293b;" if compact else "margin: 0.25rem 0; color: #1e293b; font-size: 1.15rem;"
+    uses_html = (
+        ""
+        if compact
+        else f"<p style='color: #475569; font-size: 0.8rem; margin-top: 0.25rem;'><em>Common Uses: {med['common_uses']}</em></p>"
+    )
+
+    card_html = (
+        f'<div class="card-container" style="display: flex; justify-content: space-between; align-items: center;">'
+        f'<div>'
+        f'<span class="badge-type">{med["category"]}</span>'
+        f'<{heading_tag} style="{heading_style}">{med["medicine_name"]}</{heading_tag}>'
+        f'<p style="color: #64748b; font-size: 0.85rem; margin: 0;">Form: <strong>{med["dosage_form"]}</strong> | Pack: <strong>{med["unit"]}</strong></p>'
+        f'{uses_html}'
+        f'</div>'
+        f'<div style="text-align: right; min-width: 130px;">'
+        f'<span class="price-tag">₹{med["price_inr"]}</span>'
+        f'<span class="price-sub">approximate MRP, may vary</span>'
+        f'</div>'
+        f'</div>'
+    )
+    st.markdown(card_html, unsafe_allow_html=True)
+
+
 # ============================================================
 # HERO HEADER
 # ============================================================
 st.markdown("""
 <div class="hero-container">
     <div class="hero-title">🧭 CareCompass</div>
-    <div class="hero-subtitle">Intelligent Healthcare Facility Navigator & Clinical Care Pathways for Bengaluru</div>
+    <div class="hero-subtitle">Bengaluru Healthcare Facility Directory & Curated Care Pathways</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -144,7 +293,7 @@ app_mode = st.sidebar.radio(
     "Choose Mode",
     [
         "🏥 Facility Search & Filter",
-        "🗺️ Clinical Care Pathways",
+        "🗺️ Care Pathways",
         "⚡ Multi-Service Planner",
         "💊 Medicine & Cost Lookup",
         "🏢 Direct Facility Lookup"
@@ -174,70 +323,50 @@ if not (BASE_DIR / "medicines.csv").exists():
 
 
 # ============================================================
-# TAB 1: FACILITY SEARCH & FILTER
+# TAB 1: FACILITY SEARCH & FILTER (CLASSIC PROTOTYPE STYLE)
 # ============================================================
 if app_mode == "🏥 Facility Search & Filter":
-    st.markdown("### 🏥 Find Healthcare Facilities")
-    st.markdown("Search for hospitals, diagnostic labs, blood banks, dialysis units, and clinics across Bengaluru.")
-
-    col1, col2, col3, col4 = st.columns(4)
+    st.title("🔍 Search Healthcare Facilities")
 
     services_list = safe_call("get_available_services", default=[])
     areas_list = ["All"] + safe_call("get_available_areas", default=[])
-    types_list = ["All"] + safe_call("get_facility_types", default=[])
 
+    col1, col2 = st.columns(2)
     with col1:
-        selected_service = st.selectbox("Select Service", services_list)
+        selected_service = st.selectbox("Select Required Service", services_list)
     with col2:
         selected_area = st.selectbox("Select Area", areas_list)
-    with col3:
-        selected_type = st.selectbox("Facility Type", types_list)
-    with col4:
-        sort_option = st.selectbox("Sort By", ["recommendation", "name", "type", "area"])
 
-    if st.button("🔍 Search Facilities", type="primary", use_container_width=True):
+    if st.button("Search Facilities"):
         results = safe_call(
             "recommend_by_area",
             selected_service,
             selected_area,
-            facility_type=selected_type,
-            sort_by=sort_option,
             default=pd.DataFrame()
         )
 
         if results.empty:
-            st.warning("⚠️ No matching facilities found for your selected criteria. Try changing the area or facility type filter.")
+            st.error(f"No facilities found for {selected_service} in {selected_area}.")
         else:
-            st.success(f"Found **{len(results)}** matching facilities in Bengaluru.")
+            st.success(f"✅ Found {len(results)} facilities offering {selected_service} in {selected_area}")
+            st.divider()
             for _, row in results.iterrows():
-                services_pills = "".join([f"<span class='service-pill'>{s.strip()}</span>" for s in str(row['services']).split(",")])
-                st.markdown(f"""
-                <div class="card-container">
-                    <span class="badge-type">{row['facility_type']}</span>
-                    <span class="badge-area">📍 {row['area']}</span>
-                    <h3 style="margin: 0.5rem 0; color: #1e293b; font-size: 1.25rem;">{row['facility_name']}</h3>
-                    <p style="color: #64748b; margin-bottom: 0.5rem; font-size: 0.9rem;">🏠 {row['address']}</p>
-                    <p style="color: #0f172a; margin-bottom: 0.75rem; font-weight: 600;">📞 Phone: {row['phone']}</p>
-                    <div style="margin-top: 0.5rem;">
-                        <strong>Offered Services:</strong><br>{services_pills}
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+                render_classic_facility_card(row)
 
 
 # ============================================================
-# TAB 2: CLINICAL CARE PATHWAYS
+# TAB 2: CARE PATHWAYS
 # ============================================================
-elif app_mode == "🗺️ Clinical Care Pathways":
-    st.markdown("### 🗺️ End-to-End Clinical Care Pathways")
-    st.markdown("Select a medical condition or health checkup routine to view its standardized step-by-step roadmap, recommended facilities, and prescribed medicines.")
+elif app_mode == "🗺️ Care Pathways":
+    st.markdown("### 🗺️ Care Pathways")
+    st.markdown("Select a condition or checkup routine to view typical steps from our curated pathway list, matching facilities, and related medicines.")
 
     pathways_list = safe_call("get_available_pathways", default=[])
     if not pathways_list and not path_df.empty and "condition" in path_df.columns:
         pathways_list = sorted(path_df["condition"].dropna().astype(str).str.strip().unique().tolist())
 
     if not pathways_list:
-        st.info("📄 Please place `care_pathways.csv` in your project folder to use Clinical Care Pathways.")
+        st.info("📄 Please place `care_pathways.csv` in your project folder to use Care Pathways.")
     else:
         areas_list = ["All"] + safe_call("get_available_areas", default=[])
         col1, col2 = st.columns([2, 1])
@@ -250,56 +379,40 @@ elif app_mode == "🗺️ Clinical Care Pathways":
             pathway_info = safe_call("get_care_pathway", selected_condition, default=None)
             if pathway_info is not None:
                 steps = [s.strip() for s in str(pathway_info["steps"]).split(",") if s.strip()]
-                st.markdown("#### 🛣️ Step-by-Step Care Roadmap")
+                st.markdown("#### 🛣️ Typical Steps (Curated Reference)")
                 step_cols = st.columns(len(steps))
                 for i, step in enumerate(steps):
                     with step_cols[i]:
                         st.markdown(f"""
                         <div style="border-left: 4px solid #2563eb; padding: 0.75rem; background: #eff6ff; border-radius: 0.375rem;">
-                            <span style="font-size: 0.75rem; font-weight: 700; color: #1d4ed8;">STEP {i+1}</span>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: #1d4ed8;">TYPICAL STEP {i+1}</span>
                             <div style="font-weight: 600; color: #1e293b; text-transform: capitalize;">{step}</div>
                         </div>
                         """, unsafe_allow_html=True)
 
                 st.markdown("---")
-                tab_fac, tab_med = st.tabs(["🏥 Recommended Facilities for this Pathway", "💊 Commonly Prescribed Medicines"])
+                tab_fac, tab_med = st.tabs([
+                    "🏥 Facilities Offering Typical Steps",
+                    "💊 Medicines commonly used for this condition (information only, never self-medicate)"
+                ])
 
                 with tab_fac:
                     facility_results = safe_call("recommend_from_pathway", selected_condition, area=selected_area, default=pd.DataFrame())
                     if facility_results.empty:
-                        st.info("No single facility in this area covers all pathway steps simultaneously, but you can search individual steps in Tab 1.")
+                        st.info("No single facility in this area covers all typical steps at once, but you can search individual services in Facility Search & Filter.")
                     else:
-                        st.success(f"Found **{len(facility_results)}** top-tier facilities matching this clinical journey.")
+                        st.success(f"Found **{len(facility_results)}** facilities matching typical steps for this pathway.")
                         for _, row in facility_results.iterrows():
-                            services_pills = "".join([f"<span class='service-pill'>{s.strip()}</span>" for s in str(row['services']).split(",")])
-                            st.markdown(f"""
-                            <div class="card-container">
-                                <span class="badge-type">{row['facility_type']}</span>
-                                <span class="badge-area">📍 {row['area']}</span>
-                                <h4 style="margin: 0.5rem 0; color: #1e293b;">{row['facility_name']}</h4>
-                                <p style="color: #64748b; font-size: 0.85rem;">🏠 {row['address']} | 📞 {row['phone']}</p>
-                                <div>{services_pills}</div>
-                            </div>
-                            """, unsafe_allow_html=True)
+                            render_styled_facility_card(row, compact=True)
 
                 with tab_med:
                     med_results = safe_call("get_medicines_for_pathway", selected_condition, default=pd.DataFrame())
                     if med_results.empty:
-                        st.info("No specific medications linked directly to this pathway in the database.")
+                        st.info("No medications linked to this condition in the local dataset.")
                     else:
+                        st.caption("Prices shown are approximate MRP, may vary. Always consult a qualified healthcare professional.")
                         for _, med in med_results.iterrows():
-                            st.markdown(f"""
-                            <div class="card-container" style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <span class="badge-type">{med['category']}</span>
-                                    <h4 style="margin: 0.25rem 0; color: #1e293b;">{med['medicine_name']}</h4>
-                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Form: <strong>{med['dosage_form']}</strong> ({med['unit']})</p>
-                                </div>
-                                <div>
-                                    <span class="price-tag">₹{med['price_inr']}</span>
-                                </div>
-                            </div>
-                            """, unsafe_allow_html=True)
+                            render_medicine_card(med, compact=True)
 
 
 # ============================================================
@@ -307,7 +420,7 @@ elif app_mode == "🗺️ Clinical Care Pathways":
 # ============================================================
 elif app_mode == "⚡ Multi-Service Planner":
     st.markdown("### ⚡ Multi-Service One-Stop Planner")
-    st.markdown("Need multiple tests or consultations in a single visit? Select multiple services to find facilities that cover all your requirements.")
+    st.markdown("Need multiple tests or consultations in a single visit? Select multiple services to find facilities that offer those services.")
 
     all_services = safe_call("get_available_services", default=[])
     selected_services = st.multiselect("Select Required Services", all_services, default=all_services[:2] if len(all_services) >= 2 else all_services)
@@ -321,20 +434,11 @@ elif app_mode == "⚡ Multi-Service Planner":
         else:
             multi_results = safe_call("recommend_multiple_services", selected_services, area=selected_area, default=pd.DataFrame())
             if multi_results.empty:
-                st.warning("⚠️ No facilities found covering these exact combinations in this area.")
+                st.warning("⚠️ No facilities found covering these services in this area.")
             else:
-                st.success(f"Found **{len(multi_results)}** facilities capable of handling your multi-service requirements.")
+                st.success(f"Found **{len(multi_results)}** facilities matching your selected services.")
                 for _, row in multi_results.iterrows():
-                    services_pills = "".join([f"<span class='service-pill'>{s.strip()}</span>" for s in str(row['services']).split(",")])
-                    st.markdown(f"""
-                    <div class="card-container">
-                        <span class="badge-type">{row['facility_type']}</span>
-                        <span class="badge-area">📍 {row['area']}</span>
-                        <h3 style="margin: 0.5rem 0; color: #1e293b;">{row['facility_name']}</h3>
-                        <p style="color: #64748b; font-size: 0.9rem;">🏠 {row['address']} | 📞 {row['phone']}</p>
-                        <div>{services_pills}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    render_styled_facility_card(row, compact=False)
 
 
 # ============================================================
@@ -342,7 +446,7 @@ elif app_mode == "⚡ Multi-Service Planner":
 # ============================================================
 elif app_mode == "💊 Medicine & Cost Lookup":
     st.markdown("### 💊 Medicine & Cost Explorer")
-    st.markdown("Look up brand names, generic formulations, categories, or therapeutic uses with transparent pricing (INR).")
+    st.markdown("Look up medicine names, categories, or common uses. Listed prices are **approximate MRP, may vary**.")
 
     if med_all_df.empty:
         st.info("📄 Please place `medicines.csv` in your project folder to use Medicine & Cost Lookup.")
@@ -353,21 +457,9 @@ elif app_mode == "💊 Medicine & Cost Lookup":
         if med_df.empty:
             st.info("No medicines matched your search query.")
         else:
-            st.markdown(f"Showing **{len(med_df)}** medication options:")
+            st.markdown(f"Showing **{len(med_df)}** medication entries (approximate MRP, may vary):")
             for _, med in med_df.iterrows():
-                st.markdown(f"""
-                <div class="card-container" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span class="badge-type">{med['category']}</span>
-                        <h3 style="margin: 0.25rem 0; color: #1e293b; font-size: 1.15rem;">{med['medicine_name']}</h3>
-                        <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Form: <strong>{med['dosage_form']}</strong> | Pack: <strong>{med['unit']}</strong></p>
-                        <p style="color: #475569; font-size: 0.8rem; margin-top: 0.25rem;"><em>Common Uses: {med['common_uses']}</em></p>
-                    </div>
-                    <div style="text-align: right; min-width: 100px;">
-                        <span class="price-tag">₹{med['price_inr']}</span>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+                render_medicine_card(med, compact=False)
 
 
 # ============================================================
@@ -375,7 +467,7 @@ elif app_mode == "💊 Medicine & Cost Lookup":
 # ============================================================
 elif app_mode == "🏢 Direct Facility Lookup":
     st.markdown("### 🏢 Direct Facility & Branch Explorer")
-    st.markdown("Look up a specific hospital, diagnostic chain, or blood bank by name to view all its branches and contact details.")
+    st.markdown("Look up a hospital, diagnostic chain, or blood bank by name to view listed branches and contact details.")
 
     facility_query = st.text_input("Hospital or Lab Name (e.g., 'Manipal', 'Fortis', 'Aster', 'Thyrocare')", "")
 
@@ -386,16 +478,14 @@ elif app_mode == "🏢 Direct Facility Lookup":
         else:
             st.success(f"Found **{len(fac_results)}** matching branch locations.")
             for _, row in fac_results.iterrows():
-                services_pills = "".join([f"<span class='service-pill'>{s.strip()}</span>" for s in str(row['services']).split(",")])
-                st.markdown(f"""
-                <div class="card-container">
-                    <span class="badge-type">{row['facility_type']}</span>
-                    <span class="badge-area">📍 {row['area']}</span>
-                    <h3 style="margin: 0.5rem 0; color: #1e293b;">{row['facility_name']}</h3>
-                    <p style="color: #64748b; font-size: 0.9rem;">🏠 {row['address']}</p>
-                    <p style="color: #0f172a; font-weight: 600;">📞 {row['phone']}</p>
-                    <div style="margin-top: 0.5rem;">{services_pills}</div>
-                </div>
-                """, unsafe_allow_html=True)
+                render_styled_facility_card(row, compact=False)
     else:
         st.info("💡 Type a hospital or lab name above to inspect its branches and services.")
+
+st.divider()
+st.caption(
+    "Disclaimer: This app is for informational purposes only and is not medical advice. "
+    "Facility listings, curated care pathway steps, and medicine prices (approximate MRP, may vary) "
+    "may change; always verify details directly with providers and consult a qualified healthcare professional."
+)
+st.caption("CareCompass | Bengaluru Healthcare Directory & Curated Care Pathways")
