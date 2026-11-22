@@ -17,7 +17,7 @@ MED015,"Salbutamol / Asthalin / Duolin Inhaler",Bronchodilator,Inhaler,Inhaler c
 MED016,"Budesonide / Foracort / Budecort Inhaler",Corticosteroid Inhaler,Inhaler,Inhaler canister (200 doses),350.0,"Respiratory & Asthma Screening, Chronic Cough Workup"
 MED017,"Pantoprazole / Pantocid / Pan-D / Pantodac 40mg",Antacid / PPI,Tablet,Strip of 15 tablets,55.0,"Liver & Gastroenterology Check, General Health Screening"
 MED018,"Omeprazole / Omez / Ocid 20mg",Antacid / PPI,Capsule,Strip of 20 capsules,40.0,Liver & Gastroenterology Check
-MED019,"Ursodeoxycholic Acid / Ursocol / Udiliv 300mg",Gallstone / Liver Agent,Tablet,Strip of 10 tablets,420.0,Liver & Gastroenterology Check
+MED019,"Ursodeoxycholic Acid / Ursocol / Udiliv 300mg",Gallstone / Liver Agent,Tablet,Strip of 10 tablets,420.0,"Liver & Gastroenterology Check"
 MED020,"Sevelamer Carbonate / Renvela / Sevcar 800mg",Phosphate Binder,Tablet,Strip of 10 tablets,450.0,"Kidney Care Journey, Dialysis Routine"
 MED021,"Sodium Bicarbonate / Soda Mint / Alka-Seltzer 500mg",Alkalinizer / Renal Supp,Tablet,Strip of 10 tablets,28.0,"Kidney Care Journey, Renal Failure Screening"
 MED022,"Ferrous Sulphate / Orofer XT / Autrin",Hematinic / Supplement,Tablet,Strip of 10 tablets,40.0,"Anemia Management, Maternal & Prenatal Checkup"
